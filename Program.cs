@@ -4,7 +4,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        AngelosCounter angeloi = new AngelosCounter("karpos_pneumatos.csv");
+        var angeloi = new AngelosCounter("karpos_pneumatos.csv");
         var amountPerAngelos = angeloi.GetKarposPerAngelos();
         foreach(var obj in amountPerAngelos)
         {

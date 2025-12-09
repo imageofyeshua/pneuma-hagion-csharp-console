@@ -2,7 +2,7 @@ namespace PneumaHagion;
 
 public class AngelosCounter
 {
-    private List<Angelos> _angeloi;
+    private IEnumerable<Angelos> _angeloi;
 
     public AngelosCounter(List<Angelos> angeloi)
     {
@@ -14,10 +14,10 @@ public class AngelosCounter
         _angeloi = ReadAngelos(filePath);
     }
 
-    public Dictionary<string, int> GetKarposPerAngelos()
+    public IDictionary<string, int> GetKarposPerAngelos()
     {
-        Dictionary<string, int> dict = new();
-        foreach (Angelos angelos in _angeloi)
+        var dict = new Dictionary<string, int>();
+        foreach (var angelos in _angeloi)
         {
             if (dict.ContainsKey(angelos.Name))
                 dict[angelos.Name] += angelos.Amount;
@@ -26,7 +26,7 @@ public class AngelosCounter
         }
         return dict;
     }
-    private static List<Angelos> ReadAngelos(string filePath)
+    private static IEnumerable<Angelos> ReadAngelos(string filePath)
     {
         List<Angelos> angeloi = new();
         string[] lines = File.ReadAllLines(filePath);
